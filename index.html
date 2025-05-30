@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Kamera</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+    video { width: 90%; max-width: 500px; border: 2px solid #ccc; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Live Kamera Übertragung</h1>
+  <p>Erlaube den Kamera-Zugriff, um das T-Shirt zu zeigen 😄</p>
+  <video id="video" autoplay playsinline></video>
+
+  <script>
+    const video = document.getElementById('video');
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+        video.srcObject = stream;
+      })
+      .catch(error => {
+        alert('Zugriff auf Kamera abgelehnt oder nicht verfügbar.');
+        console.error(error);
+      });
+  </script>
+</body>
+</html>
